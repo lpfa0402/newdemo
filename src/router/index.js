@@ -1,30 +1,37 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-
-Vue.use(VueRouter);
-
-const routes = [
+import Vue from 'vue';
+import Router from 'vue-router';
+// 引入组件模块
+import Home from './home';
+import Function from './Function';
+import Navigations from './Navigations';
+import Basic from './Basic';
+import Form from './Form';
+Vue.use(Router);
+const BasicLayout = () => import('@/layout/BasicLayout');
+const LogIn = () => import('@/views/LogIn/LogIn');
+export const constantRouterMap = [
   {
-    path: "/",
-    name: "Home",
-    component: Home
+    path: '/',
+    meta: { title: '用户登录' }, // meta参数可以是一个对象，也可以是一个数组，配置每个路由的一些信息，类似于每个路由的标识符$route.meta可读取
+    component: LogIn,
+    hidden: false
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: '/',
+    meta: { title: '首页' },
+    redirect: '/home',
+    component: BasicLayout,
+    children: [
+      ...Home,
+      ...Function,
+      ...Navigations,
+      ...Basic,
+      ...Form
+    ]
   }
 ];
-
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
+export default new Router({
+  mode: 'history', // 后端支持可开
+  routes: constantRouterMap, // 路由路径
+  scrollBehavior: () => ({ y: 0 }) // 在切换时定位路由滚动条的位置
 });
-
-export default router;
