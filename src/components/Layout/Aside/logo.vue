@@ -2,14 +2,14 @@
   <div class="logo">
     <router-link to="/" :title="title">
       <img
-        src="@/assets/img/logo1.png"
+        src="@/assets/img/logo1.jpg"
         alt="logo"
         style="width:70px;"
         v-if="!collapsed"
         class="logoImg"
       />
       <img
-        src="@/assets/img/logo2.png"
+        src="@/assets/img/logo2.jpg"
         alt="logo"
         style="width:29px;"
         v-if="collapsed"
