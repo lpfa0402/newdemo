@@ -10,8 +10,8 @@ export default {
   },
   name: 'TabsPageC',
   mounted() {
-    this.$emit('myClallback', '测试myClallback的回调');
-    this.$emit('myClallbackB', '测试myClallbackB的回调');
+    this.$emit('myCallback', '测试myClallback的回调');
+    this.$emit('myCallbackB', '测试myClallbackB的回调');
   },
   methods: {
     // myClallback () {}
