@@ -22,5 +22,19 @@ module.exports = {
       preProcessor: 'less',
       patterns: [path.resolve(__dirname,'./src/assets/css/variables.less')]
     }
-  }
+  },
+  configureWebpack: config => {
+    // 引入markdown-loader全局使用
+    config.module.rules.push({
+      test: /\.md$/,
+      use: [
+        {
+          loader: 'vue-loader',
+        },
+        {
+          loader: require.resolve('./markdown-loader'),
+        },
+      ],
+    },);
+  },
 };

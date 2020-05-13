@@ -3,6 +3,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import '@/config';
+// 代码展示样式
+import 'prismjs/themes/prism.css';
 
 Vue.config.productionTip = false;
 

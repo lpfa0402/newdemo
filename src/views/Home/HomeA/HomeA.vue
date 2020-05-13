@@ -1,11 +1,11 @@
 <template>
   <div>
-    6666
+    77777777777777
   </div>
 </template>
 <script>
 export default {
-  name: 'homeA'
+  name: 'homeA',
 };
 </script>
 
