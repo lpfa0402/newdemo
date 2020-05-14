@@ -1,4 +1,10 @@
 <script>
+/**
+ * @Author: 焦质晔
+ * @Date: 2019-06-20 10:00:00
+ * @Last Modified by:   焦质晔
+ * @Last Modified time: 2019-06-20 10:00:00
+ **/
 export default {
   name: 'Anchor',
   props: {
@@ -62,19 +68,14 @@ export default {
       if (this.isIE()) {
         this.scroll.scrollTop = document.getElementById(key).offsetTop;
       } else {
-        this.scroll.scrollTo({
-          top: document.getElementById(key).offsetTop,
-          behavior: 'smooth'
-        });
+        this.scroll.scrollTo({ top: document.getElementById(key).offsetTop, behavior: 'smooth' });
         setTimeout(() => {
           this.state = 'ready';
         }, 400);
       }
     },
     setPositionArr() {
-      this.posArr = this.labelList.map(
-        x => document.getElementById(x.id).offsetTop
-      );
+      this.posArr = this.labelList.map(x => document.getElementById(x.id).offsetTop);
     },
     // 函数防抖
     debounce(fn, delay) {
@@ -101,21 +102,12 @@ export default {
     createLabel() {
       if (!this.labelList.length) return null;
       const LabelItems = this.labelList.map(x => (
-        <li
-          key={x.id}
-          href={`#/${x.id}`}
-          class={{ selected: this.activeKey === x.id }}
-          onClick={e => this.clickHandle(e, x.id)}
-        >
+        <li key={x.id} href={`#/${x.id}`} class={{ selected: this.activeKey === x.id }} onClick={e => this.clickHandle(e, x.id)}>
           {x.title}
         </li>
       ));
       return (
-        <div
-          key='label'
-          class='labels'
-          style={{ width: `${this.labelWidth}px` }}
-        >
+        <div key="label" class="labels" style={{ width: `${this.labelWidth}px` }}>
           {LabelItems}
         </div>
       );
@@ -130,9 +122,9 @@ export default {
   },
   render() {
     return (
-      <div class='anchor-wrap'>
+      <div class="anchor-wrap">
         {this.createLabel()}
-        <div class='scroll-wrapper' ref='scroll'>
+        <div class="scroll-wrapper" ref="scroll">
           {this.$slots['default']}
         </div>
       </div>
@@ -141,15 +133,46 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .anchor-wrap {
   height: 100%;
   display: flex;
   flex-direction: row;
-}
-.anchor-wrap .labels {
-  width: 80px;
-  height: 100%;
-  border-right: 1px solid #dedede;
+  /deep/ .labels {
+    width: 80px;
+    height: 100%;
+    margin-right: @moduleMargin;
+    border-right: 1px solid @borderColor;
+    li {
+      list-style: none;
+      height: 40px;
+      line-height: 40px;
+      padding-right: 15px;
+      text-align: right;
+      position: relative;
+      cursor: pointer;
+      &.selected {
+        color: @primaryColor;
+        &::after {
+          content: '';
+          position: absolute;
+          right: -2px;
+          top: 0;
+          width: 2px;
+          height: 100%;
+          background-color: @primaryColor;
+        }
+      }
+    }
+  }
+  .scroll-wrapper {
+    flex: 1;
+    margin-right: -@moduleMargin;
+    padding-right: @modulePadding;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden !important;
+    overflow-y: auto;
+  }
 }
 </style>

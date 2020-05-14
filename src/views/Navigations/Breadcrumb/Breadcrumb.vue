@@ -1,6 +1,6 @@
 <template>
   <div style="padding-bottom: 60px;">
-    <h2>LazyLoadTabs 标签页</h2>
+    <h2>Breadcrumb 位置导航</h2>
     <div class="cod_wrapper">
       <div class="cod_top">
         <Breadcrumb
