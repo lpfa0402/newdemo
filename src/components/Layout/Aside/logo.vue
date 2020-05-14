@@ -4,14 +4,14 @@
       <img
         src="@/assets/img/logo1.jpg"
         alt="logo"
-        style="width:70px;"
+        style="width:100%; height: 60px"
         v-if="!collapsed"
         class="logoImg"
       />
       <img
         src="@/assets/img/logo2.jpg"
         alt="logo"
-        style="width:29px;"
+        style="width:100%; height: 60px"
         v-if="collapsed"
         class="logoImg1"
       />
