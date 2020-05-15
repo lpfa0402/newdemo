@@ -24,10 +24,10 @@ function pictureCompress(options) {
     let quality = options.quality || 0.92;
     let fillColor = options.fillColor || '#fff';
     let fit = options.fit || 'scale';
-    let watermark = options.iswatermark !== false; // 试乘试驾加水印
-    let fileSize = options.fileSize > 0 ? options.fileSize : false; // 限制图片大小
+    let watermark = options.iswatermark ? true : false; //试乘试驾加水印
+    let fileSize = options.fileSize > 0 ? options.fileSize : false; //限制图片大小
     let cutNum = 0.1;
-    // let finalRes = null
+    // let finalRes = null;
     if (width <= 0 || height <= 0) {
       reject(new Error('dist width or height need > 0'));
       return;
@@ -52,25 +52,9 @@ function pictureCompress(options) {
       );
       let imgData = '';
       if (fileSize > 0) {
-        imgData = compress(
-          this,
-          distSize.width,
-          distSize.height,
-          type,
-          fillColor,
-          0.98,
-          watermark
-        );
+        imgData = compress(this, distSize.width, distSize.height, type, fillColor, 0.98, watermark);
         let task = async () => {
-          imgData = await compress(
-            this,
-            distSize.width,
-            distSize.height,
-            type,
-            fillColor,
-            quality,
-            watermark
-          );
+          imgData = await compress(this, distSize.width, distSize.height, type, fillColor, quality, watermark);
         };
         while (showSize(imgData) > fileSize) {
           // 如果文件大小不合适，则一直压缩到500k以内
@@ -86,15 +70,7 @@ function pictureCompress(options) {
           img: imgData
         });
       } else {
-        imgData = compress(
-          this,
-          distSize.width,
-          distSize.height,
-          type,
-          fillColor,
-          quality,
-          watermark
-        );
+        imgData = compress(this, distSize.width, distSize.height, type, fillColor, quality, watermark);
         resolve({
           ...distSize,
           img: imgData
@@ -136,11 +112,7 @@ function compress(img, width, height, type, fillColor, quality, watermark) {
       ctx.rotate((-45 * Math.PI) / 180); // 水印初始偏转角度
       ctx.font = '40px microsoft yahei';
       ctx.fillStyle = 'rgba(255,255,255,0.5)';
-      ctx.fillText(
-        `仅试乘试驾${moment().format('YYYY-MM-DD')}有效`,
-        -150,
-        i * 200
-      );
+      ctx.fillText(`仅试乘试驾${moment().format('YYYY-MM-DD')}有效`, -150, i * 200);
       ctx.rotate((45 * Math.PI) / 180); // 把水印偏转角度调整为原来的，不然他会一直转
     }
   }
@@ -154,18 +126,14 @@ function compress(img, width, height, type, fillColor, quality, watermark) {
  */
 function getDistSize(source, dist, fit) {
   if (fit === 'fill') return dist;
-  let scale = Math.min(
-    dist.width / source.width,
-    dist.height / source.height,
-    1
-  );
+  let scale = Math.min(dist.width / source.width, dist.height / source.height, 1);
   return {
     width: Math.round(source.width * scale),
     height: Math.round(source.height * scale)
   };
 }
 function showSize(base64url) {
-  // 把头部去掉
+  //把头部去掉
   var str = base64url.replace('data:image/png;base64,', '');
   // 找到等号，把等号也去掉
   var equalIndex = str.indexOf('=');
@@ -179,11 +147,11 @@ function showSize(base64url) {
   // 由字节转换为kb
   var size = '';
   size = (fileLength / 1024).toFixed(2);
-  var sizeStr = size + ''; // 转成字符串
-  var index = sizeStr.indexOf('.'); // 获取小数点处的索引
-  var dou = sizeStr.substr(index + 1, 2); // 获取小数点后两位的值
-  if (dou === '00') {
-    // 判断后两位是否为00，如果是则删除00
+  var sizeStr = size + ''; //转成字符串
+  var index = sizeStr.indexOf('.'); //获取小数点处的索引
+  var dou = sizeStr.substr(index + 1, 2); //获取小数点后两位的值
+  if (dou == '00') {
+    //判断后两位是否为00，如果是则删除00
     return sizeStr.substring(0, index) + sizeStr.substr(index + 3, 2);
   }
   return size;

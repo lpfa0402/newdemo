@@ -58,10 +58,9 @@
 </template>
 
 <script>
-// import axios from '@/api/fetch'
+import axios from 'axios';
 import canvasCompress from './compress';
 import CropperPanel from './CropperPanel';
-const axios = '';
 export default {
   name: 'UploadCropper',
   components: {
@@ -113,7 +112,7 @@ export default {
       default: -1
     }
   },
-  data () {
+  data() {
     this.uploadWrap = null;
     this.fileData = null; // 文件裁剪之后的 blob
     this.uid = ''; // 文件的 uid
@@ -129,11 +128,11 @@ export default {
     };
   },
   watch: {
-    initialValue (val) {
+    initialValue(val) {
       this.imgUrlArr = val;
       !val.length && this.clearFiles();
     },
-    imgUrlArr (val) {
+    imgUrlArr(val) {
       this.$emit('success', val);
       // 取消表单校验
       if (val.length === this.limit && this.$parent.clearValidate) {
@@ -141,26 +140,26 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.uploadWrap = this.$refs.upload.$el.querySelector('.el-upload');
     this.setUploadWrapHeight();
   },
-  updated () {
+  updated() {
     const { uploadCropper } = this.$refs;
     uploadCropper && uploadCropper.Update();
   },
   methods: {
-    handlePreview (index) {
+    handlePreview(index) {
       this.dialogImageUrl = this.imgUrlArr[index].url || this.imgUrlArr[index];
       this.dialogVisible = true;
     },
-    handleRemove (index) {
+    handleRemove(index) {
       this.imgUrlArr.splice(index, 1);
     },
-    clearFiles () {
+    clearFiles() {
       this.$refs.upload.clearFiles();
     },
-    changeHandler (file, files) {
+    changeHandler(file, files) {
       console.log(file, files, '上传之前');
       let fs = this.fileTypes.join(',');
       fs = fs.includes('jpg') ? (fs += ',jpeg').split(',') : fs.split(',');
@@ -183,13 +182,13 @@ export default {
       this.cropperModel = true;
     },
 
-    uploadHandler (data) {
+    uploadHandler(data) {
       this.fileData = data;
       console.log(data, '上传了');
       // console.log(data, 'wenjian');
       this.$refs.upload.submit();
     },
-    async upload (params) {
+    async upload(params) {
       const formData = new FormData();
       const base64 = await canvasCompress({
         img: this.fileData,
@@ -215,18 +214,18 @@ export default {
       this.cropperModel = false;
       this.isLoading = false;
     },
-    beforeClose () {
+    beforeClose() {
       this.clearFiles();
       this.cropperModel = false;
       this.isLoading = false;
     },
-    setUploadWrapHeight () {
+    setUploadWrapHeight() {
       const iHeight = !this.isCalcHeight ? this.height : Number.parseInt((this.width * this.fixedSize[1]) / this.fixedSize[0]);
       this.uploadWrap.style.height = `${iHeight}px`;
       this.uploadWrap.style.lineHeight = `${iHeight - 2}px`;
     },
     // base64 转成 bolb 对象
-    dataURItoBlob (base64Data) {
+    dataURItoBlob(base64Data) {
       let byteString;
       if (base64Data.split(',')[0].indexOf('base64') >= 0) {
         byteString = atob(base64Data.split(',')[1]);
@@ -243,7 +242,7 @@ export default {
       }
       return new Blob([ia], { type: mimeString });
     },
-    async downloadHandle (index) {
+    async downloadHandle(index) {
       try {
         Object.prototype.toString.call(this.imgUrlArr[index]) === '[object Object]' ? await this.downloadFile(this.imgUrlArr[index]) : window.open(this.imgUrlArr[index]);
       } catch (err) {
@@ -251,12 +250,12 @@ export default {
       }
     },
     // 获取服务端文件 to blob
-    async downLoadByUrl (url, params = {}) {
+    async downLoadByUrl(url, params = {}) {
       const { data } = await axios({ url, params, responseType: 'blob' });
       return data;
     },
     // 执行下载动作
-    async downloadFile ({ url, name }, params) {
+    async downloadFile({ url, name }, params) {
       const blob = await this.downLoadByUrl(url, params);
       const fileName = !name ? url.slice(url.lastIndexOf('/') + 1) : name;
       // ie10+

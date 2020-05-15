@@ -28,6 +28,7 @@ h2{
 .cod_top{
   padding: 24px;
   border-bottom: #dedede 1px solid;
+  overflow: hidden;
 }
 .cod_bottom{
   width: 100%;

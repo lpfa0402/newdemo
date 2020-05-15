@@ -57,7 +57,7 @@ export default {
     Cropper
   },
   props: ['imgFile', 'fixedNumber', 'loading'],
-  data () {
+  data() {
     return {
       previews: {}, // 预览数据
       downImg: '#',
@@ -79,26 +79,26 @@ export default {
     };
   },
   methods: {
-    changeScale (num = 1) {
+    changeScale(num = 1) {
       // 图片缩放
       this.$refs.cropper.changeScale(num);
     },
-    rotateLeft () {
+    rotateLeft() {
       // 向左旋转
       this.$refs.cropper.rotateLeft();
     },
-    rotateRight () {
+    rotateRight() {
       // 向右旋转
       this.$refs.cropper.rotateRight();
     },
-    Update () {
+    Update() {
       this.option.img = this.imgFile.url;
     },
-    realTime (data) {
+    realTime(data) {
       // 实时预览
       this.previews = data;
     },
-    uploadImg (type) {
+    uploadImg(type) {
       // 显示 loading
       this.$emit('update:loading', true);
       // 将剪裁好的图片回传给父组件

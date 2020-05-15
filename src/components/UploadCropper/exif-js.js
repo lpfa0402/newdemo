@@ -1,13 +1,13 @@
 const Exif = {};
 
 Exif.getData = img =>
-  new Promise((resolve, reject) => {
+  new Promise((reslove, reject) => {
     let obj = {};
     getImageData(img)
       .then(data => {
         obj.arrayBuffer = data;
         obj.orientation = getOrientation(data);
-        resolve(obj);
+        reslove(obj);
       })
       .catch(error => {
         reject(error);
@@ -17,32 +17,32 @@ Exif.getData = img =>
 // 这里的获取exif要将图片转ArrayBuffer对象，这里假设获取了图片的baes64
 // 步骤一
 // base64转ArrayBuffer对象
-function getImageData (img) {
+function getImageData(img) {
   let data = null;
-  return new Promise((resolve, reject) => {
+  return new Promise((reslove, reject) => {
     if (img.src) {
-      if (/^data:/i.test(img.src)) {
+      if (/^data/i.test(img.src)) {
         // Data URI
         data = base64ToArrayBuffer(img.src);
-        resolve(data);
-      } else if (/^blob:/i.test(img.src)) {
+        reslove(data);
+      } else if (/^blob/i.test(img.src)) {
         // Object URL
         var fileReader = new FileReader();
-        fileReader.onload = function (e) {
+        fileReader.onload = function(e) {
           data = e.target.result;
-          resolve(data);
+          reslove(data);
         };
-        objectURLToBlob(img.src, function (blob) {
+        objectURLToBlob(img.src, function(blob) {
           fileReader.readAsArrayBuffer(blob);
         });
       } else {
         var http = new XMLHttpRequest();
-        http.onload = function () {
-          if (this.status === 200 || this.status === 0) {
+        http.onload = function() {
+          if (this.status == 200 || this.status === 0) {
             data = http.response;
-            resolve(data);
+            reslove(data);
           } else {
-            throw new Error('Could not load image');
+            throw 'Could not load image';
           }
           http = null;
         };
@@ -51,24 +51,24 @@ function getImageData (img) {
         http.send(null);
       }
     } else {
-      reject(new Error('img error'));
+      reject('img error');
     }
   });
 }
 
-function objectURLToBlob (url, callback) {
+function objectURLToBlob(url, callback) {
   var http = new XMLHttpRequest();
   http.open('GET', url, true);
   http.responseType = 'blob';
-  http.onload = function (e) {
-    if (this.status === 200 || this.status === 0) {
+  http.onload = function(e) {
+    if (this.status == 200 || this.status === 0) {
       callback(this.response);
     }
   };
   http.send();
 }
 
-function base64ToArrayBuffer (base64) {
+function base64ToArrayBuffer(base64) {
   base64 = base64.replace(/^data:([^;]+);base64,/gim, '');
   var binary = atob(base64);
   var len = binary.length;
@@ -81,7 +81,7 @@ function base64ToArrayBuffer (base64) {
 }
 // 步骤二，Unicode码转字符串
 // ArrayBuffer对象 Unicode码转字符串
-function getStringFromCharCode (dataView, start, length) {
+function getStringFromCharCode(dataView, start, length) {
   var str = '';
   var i;
   for (i = start, length += start; i < length; i++) {
@@ -91,7 +91,7 @@ function getStringFromCharCode (dataView, start, length) {
 }
 
 // 步骤三，获取jpg图片的exif的角度（在ios体现最明显）
-function getOrientation (arrayBuffer) {
+function getOrientation(arrayBuffer) {
   var dataView = new DataView(arrayBuffer);
   var length = dataView.byteLength;
   var orientation;
