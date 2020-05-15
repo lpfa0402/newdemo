@@ -58,11 +58,13 @@ export default {
     },
     multiple: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   data() {
     return {
+      file: [],
+      length: 0,
       fileList: this.initialValue
     };
   },
@@ -76,67 +78,105 @@ export default {
   },
   methods: {
     beforeUploadHandle(file) {
+      console.log(file, 'fileeee');
       const isLt5M = file.size / 1024 / 1024 < this.fileSize;
       if (this.fileTypeVerification) {
         if (!isLt5M) {
           this.$notify({ title: '提示信息', message: `上传文件大小不能超过 ${this.fileSize}M！`, type: 'warning' });
+          this.file = [];
+          return false;
         }
         return isLt5M;
       } else {
         const isType = this.fileTypes.includes(file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase());
         if (!isType) {
           this.$notify({ title: '提示信息', message: `上传的文件只能是 ${this.fileTypes.join(',')} 格式！`, type: 'warning' });
+          this.file = [];
+          return false;
         }
         if (!isLt5M) {
           this.$notify({ title: '提示信息', message: `上传文件大小不能超过 ${this.fileSize}M！`, type: 'warning' });
+          this.file = [];
+          return false;
         }
         return isType && isLt5M;
       }
     },
-    removeFileHandle(file, fileList) {
-      this.fileList = fileList;
+    uploadFileFun() {
+      let formData = new FormData();
+      if (this.file.length > 0) {
+        // let arr = [];
+        this.file.forEach(file => {
+          formData.append('file', file);
+        });
+
+        if (this.length > 0) {
+          //	走接口
+          console.log(formData.getAll('file'));
+          let _url = this.actionUrl; //上传文件接口地址
+          axios({
+            url: _url,
+            method: 'post',
+            data: formData
+          }).then(
+            res => {
+              this.file = [];
+              //此处重置文件中间存储变量是为了相同文件能够重复传递
+              if (200 === res.data.resultCode) {
+                console.log(res, 'ressss');
+                this.$message.success('成功');
+                this.fileList = res.data.data;
+              } else {
+                this.$message.success('失败');
+              }
+            },
+            err => {
+              this.file = [];
+              this.$message.success('失败');
+            }
+          );
+        }
+      }
     },
-    successHandle(res, file, fileList) {
-      if (res.resultCode === 200) {
-        this.fileList = [...this.fileList, { name: file.name, url: res.data || '' }];
+    filesChange(file) {
+      console.log(file, 'fileeee');
+      const isLt5M = file.size / 1024 / 1024 < this.fileSize;
+      if (this.fileTypeVerification) {
+        if (!isLt5M) {
+          this.$notify({ title: '提示信息', message: `上传文件大小不能超过 ${this.fileSize}M！`, type: 'warning' });
+          return false;
+        }
+        return isLt5M;
       } else {
-        this.errorHandle(res.errMsg);
+        const isType = this.fileTypes.includes(file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase());
+        if (!isType) {
+          this.$notify({ title: '提示信息', message: `上传的文件只能是 ${this.fileTypes.join(',')} 格式！`, type: 'warning' });
+          return false;
+        }
+        if (!isLt5M) {
+          this.$notify({ title: '提示信息', message: `上传文件大小不能超过 ${this.fileSize}M！`, type: 'warning' });
+          return false;
+        }
+        return isType && isLt5M;
       }
     },
-    errorHandle(err) {
-      this.$emit('error', err || '');
-      this.$message.error(err || '文件上传失败！');
-    },
-    async previewFileHandle(file) {
-      try {
-        await this.downloadFile(file);
-      } catch (err) {
-        this.$message.error('文件下载失败！');
+    change() {
+      //判断上传文件数量
+      this.length = document.querySelector('input[type=file]').files.length;
+      if (this.length > 0) {
+        Array.from(document.querySelector('input[type=file]').files).forEach(file => {
+          let is = this.filesChange(file);
+          if (is) {
+            if (this.file.indexOf(file) == -1) {
+              this.file.push(file);
+            }
+          }
+        });
+        console.log(this.file, 'fileList');
       }
+      return false;
     },
-    // 获取服务端文件 to blob
-    async downLoadByUrl(url, params = {}) {
-      return await axios({ url, params, responseType: 'blob' });
-    }, //执行下载动作
-    async downloadFile({ url, name }, params) {
-      if (name.split('.')[1] == 'jpg' || name.split('.')[1] == 'png') {
-        return window.open(url);
-      }
-      // const { headers, data } = await this.downLoadByUrl(url);
-      const { data } = await this.downLoadByUrl(url);
-      // const contentDisposition = headers['content-disposition']; //获取文件名
-      // const fileName = contentDisposition ? contentDisposition.split(';')[1].split('filename=')[1] : !name ? url.slice(url.lastIndexOf('/') + 1) : name; //ie10+
-      if (navigator.msSaveBlob) {
-        navigator.msSaveBlob(data, decodeURI(name));
-      } else {
-        const downloadUrl = window.URL.createObjectURL(data);
-        let a = document.createElement('a');
-        a.href = downloadUrl;
-        a.download = decodeURI(name);
-        a.click();
-        a = null;
-      }
-    },
+
     // async downLoadByUrl(url, params = {}) {
     //   const { data } = await axios({ url, params, responseType: 'blob', withCredentials: !0 });
     //   return data;
@@ -176,14 +216,12 @@ export default {
         showFileList: $props.isFilesize ? true : !$props.isOnlyButton,
         withCredentials: true,
         disabled: $props.disabled,
-        onPreview: this.previewFileHandle,
-        beforeUpload: this.beforeUploadHandle,
-        onRemove: this.removeFileHandle,
-        onSuccess: this.successHandle,
-        onError: this.errorHandle,
+        // beforeUpload: this.beforeUploadHandle,
         autoUpload: $props.autoUpload,
         autoUploadDisplay: $props.autoUploadDisplay,
-        multiple: $props.multiple
+        multiple: $props.multiple,
+        httpRequest: this.uploadFileFun,
+        onChange: this.change
       },
       on: $listeners
     };
