@@ -4,7 +4,7 @@
     <div class="cod_wrapper">
       <div class="cod_top">
         <!-- 将@click绑定的ajax事件换成 :click绑定 -->
-        <AjaxButton :click="saveHandle" size="medium" type="primary">
+        <AjaxButton :disabled="false" :click="saveHandle" size="medium" type="primary">
           提交
         </AjaxButton>
       </div>
@@ -98,6 +98,14 @@ export default {
           must: 'false',
           OptionalValues: 'primary / success / warning / danger / info / text',
           Default: '——'
+        },
+        {
+          parameter: 'disabled',
+          explain: '是否禁用',
+          type: 'boolean',
+          must: 'false',
+          OptionalValues: 'true / false',
+          Default: 'false'
         }
       ],
     };

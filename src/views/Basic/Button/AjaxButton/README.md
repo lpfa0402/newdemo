@@ -1,7 +1,7 @@
 ```bash
 <template>
   <!-- 将@click绑定的ajax事件换成 :click绑定 -->
-  <AjaxButton :click="saveHandle" size="small" type="primary">
+  <AjaxButton :disabled="false" :click="saveHandle" size="small" type="primary">
     提交
   </AjaxButton>
 </template>
