@@ -1,128 +1,131 @@
 <template>
-  <div>
-    <BreakSpace
-      :IconClass="IconClass"
-      :contentPosition="contentPosition"
-      :labelStyle="labelStyle"
-      :containerStyle="containerStyle"
-      :label="label"
-    />
-    <div class="l_checked_wrapper">
-      <div class="l_checked_wrapper_fl">
-        <h1>分隔符标题 label</h1>
-        <div class="l_checked">
-          <el-button size="small" @click="checkedlabel('标题一')">
-            标题一
-          </el-button>
-          <el-button size="small" @click="checkedlabel('标题二')">
-            标题二
-          </el-button>
+  <div style="padding-bottom: 60px;">
+    <h2>BreakSpace 分隔符</h2>
+    <div class="cod_wrapper">
+      <div class="cod_top">
+        <BreakSpace
+          :IconClass="IconClass"
+          :contentPosition="contentPosition"
+          :labelStyle="labelStyle"
+          :containerStyle="containerStyle"
+          :label="label"
+        />
+      </div>
+      <div class="cod_bottom">
+        <div class="cod_bottom_content">
+          <el-collapse-transition>
+            <div v-show="show">
+              <md/>
+            </div>
+          </el-collapse-transition>
+        </div>
+        <div class="cod_bottom_btn">
+          <el-button size="medium" type="text" :icon="show ? 'el-icon-caret-top' : 'el-icon-caret-bottom'" @click="show = !show">{{show ? '隐藏代码' : '显示代码'}}</el-button>
         </div>
       </div>
-      <div class="l_checked_wrapper_fl">
-        <h1>分隔符容器样式 containerStyle</h1>
-        <div class="l_checked">
-          <el-button size="small" @click="checkedcontainerStyle(true)">
-            添加边框
-          </el-button>
-          <el-button size="small" @click="checkedcontainerStyle(false)">
-            移除边框
-          </el-button>
-        </div>
+    </div>
+    <div class="Attributes_wrapper">
+      <div class="Attributes_title">
+        Attributes
       </div>
-      <div class="l_checked_wrapper_fl">
-        <h1>分隔符中文本样式 labelStyle</h1>
-        <div class="l_checked">
-          <el-button size="small" @click="checkedlabelStyle(true)">
-            添加颜色
-          </el-button>
-          <el-button size="small" @click="checkedlabelStyle(false)">
-            移除颜色
-          </el-button>
-        </div>
-      </div>
-      <div class="l_checked_wrapper_fl">
-        <h1>分隔符标题位置 contentPosition</h1>
-        <div class="l_checked">
-          <el-button size="small" @click="checkedcontentPosition('left')">
-            left
-          </el-button>
-          <el-button size="small" @click="checkedcontentPosition('center')">
-            center
-          </el-button>
-          <el-button size="small" @click="checkedcontentPosition('right')">
-            right
-          </el-button>
-        </div>
-      </div>
-      <div class="l_checked_wrapper_fl">
-        <h1>分隔符标题图标 IconClass</h1>
-        <div class="l_checked">
-          <el-button size="small" @click="checkedIconClass(null)">
-            移除
-          </el-button>
-          <el-button
-            size="small"
-            @click="checkedIconClass('el-icon-mobile-phone')"
-          >
-            添加
-          </el-button>
-        </div>
-      </div>
+      <el-table
+        :data="AttributesData"
+        size="medium"
+        style="width: 100%">
+        <el-table-column
+          min-width="100px"
+          prop="parameter"
+          label="参数">
+        </el-table-column>
+        <el-table-column
+          min-width="200px"
+          prop="explain"
+          label="说明">
+        </el-table-column>
+        <el-table-column
+          min-width="100px"
+          prop="type"
+          label="类型">
+        </el-table-column>
+        <el-table-column
+          min-width="100px"
+          prop="must"
+          label="必须">
+        </el-table-column>
+        <el-table-column
+          min-width="200px"
+          prop="OptionalValues"
+          label="可选值">
+        </el-table-column>
+        <el-table-column
+          prop="Default"
+          label="默认值">
+        </el-table-column>
+      </el-table>
     </div>
   </div>
 </template>
 <script>
+import md from './README.md';
 export default {
   name: 'BreakSpaceTest',
+  components: {
+    md
+  },
   data() {
     return {
+      show: false,
       label: '标题',
-      containerStyle: {},
-      labelStyle: {},
+      containerStyle: {border: '1px solid #e55954'},
+      labelStyle: {color: '#e55954'},
       contentPosition: 'left',
-      IconClass: null
+      IconClass: null,
+      AttributesData: [
+        {
+          parameter: 'label',
+          explain: '分隔符的标题文本',
+          type: 'String',
+          must: 'true',
+          OptionalValues: '——',
+          Default: '——'
+        },
+        {
+          parameter: 'containerStyle',
+          explain: '分隔符外层容器的 css 样式',
+          type: 'Object',
+          must: 'false',
+          OptionalValues: '——',
+          Default: '——'
+        },
+        {
+          parameter: 'labelStyle',
+          explain: '分隔符中文本的 css 样式',
+          type: 'Object',
+          must: 'false',
+          OptionalValues: '——',
+          Default: '——'
+        },
+        {
+          parameter: 'contentPosition',
+          explain: '分隔符标题位置',
+          type: 'String',
+          must: 'false',
+          OptionalValues: 'left / center / right',
+          Default: 'left'
+        },
+        {
+          parameter: 'IconClass',
+          explain: '分隔符标题图标',
+          type: 'String',
+          must: 'false',
+          OptionalValues: 'element图标库',
+          Default: '——'
+        }
+      ],
     };
   },
-  methods: {
-    checkedlabel(val) {
-      this.label = val;
-    },
-    checkedcontainerStyle(val) {
-      this.containerStyle = val === true ? { border: '1px solid #e55954' } : {};
-    },
-    checkedlabelStyle(val) {
-      this.labelStyle = val === true ? { color: '#e55954' } : {};
-    },
-    checkedcontentPosition(val) {
-      this.contentPosition = val;
-    },
-    checkedIconClass(val) {
-      this.IconClass = val;
-    }
-  }
+  methods: {}
 };
 </script>
 <style scoped>
-.l_checked_wrapper {
-  margin-top: 20px;
-  padding: 10px;
-  border: #dedede 1px solid;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.l_checked {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.l_checked_wrapper_fl {
-  border: #dedede 1px solid;
-  padding: 10px;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-}
 </style>

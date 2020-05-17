@@ -39,7 +39,7 @@ export default {
     return (
       <div class="form-divider" style={{ ...containerStyle }}>
         <el-divider {...wrapProps}>
-          {IconClass ? <i class={IconClass}></i> : ''};
+          {IconClass ? <i class={IconClass}></i> : ''}
           <span class="title" style={{ ...labelStyle }}>
             {label}
           </span>
