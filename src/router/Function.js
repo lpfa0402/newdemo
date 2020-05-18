@@ -19,6 +19,11 @@ const menuRoutes = [
         path: '/Function/ExportFile',
         meta: { title: '导出文件' },
         component: AsyncComponent('Function/ExportFile')
+      },
+      {
+        path: '/Function/BasePrint',
+        meta: { title: '打印' },
+        component: AsyncComponent('Function/BasePrint')
       }
     ]
   }

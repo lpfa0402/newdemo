@@ -16,6 +16,7 @@ import UploadFile from '@/components/UploadFile';
 import UploadFiles from '@/components/UploadFile';
 import BreakSpace from '@/components/BreakSpace';
 import Tinymce from '@/components/Tinymce';
+import BasePrint from '@/components/BasePrint';
 Vue.use(ElementUI, { size: 'small', zIndex: 1000 });
 
 // 注册全局组件
@@ -30,3 +31,4 @@ Vue.use(UploadFile);
 Vue.use(UploadFiles);
 Vue.use(BreakSpace);
 Vue.use(Tinymce);
+Vue.use(BasePrint);

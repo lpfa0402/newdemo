@@ -30,6 +30,11 @@ export default {
           path: '/Function/ExportFile',
           key: '/Function/ExportFile',
           title: '导出文件'
+        },
+        {
+          path: '/Function/BasePrint',
+          key: '/Function/BasePrint',
+          title: '打印'
         }
       ]
     },
