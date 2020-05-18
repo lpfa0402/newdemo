@@ -118,6 +118,19 @@ export default {
           title: 'Form 表单'
         }
       ]
-    }
+    },
+    {
+      path: '/Eject',
+      key: '/Eject',
+      title: '弹窗组件',
+      icon: 'el-icon-s-check',
+      children: [
+        {
+          path: '/Eject/Drawer',
+          key: '/Eject/Drawer',
+          title: '抽屉'
+        }
+      ]
+    },
   ]
 };

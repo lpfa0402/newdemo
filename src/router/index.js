@@ -6,6 +6,7 @@ import Function from './Function';
 import Navigations from './Navigations';
 import Basic from './Basic';
 import Form from './Form';
+import Eject from './Eject';
 Vue.use(Router);
 const BasicLayout = () => import('@/layout/BasicLayout');
 const LogIn = () => import('@/views/LogIn/LogIn');
@@ -26,7 +27,8 @@ export const constantRouterMap = [
       ...Function,
       ...Navigations,
       ...Basic,
-      ...Form
+      ...Form,
+      ...Eject
     ]
   }
 ];
