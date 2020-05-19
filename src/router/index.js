@@ -7,6 +7,7 @@ import Navigations from './Navigations';
 import Basic from './Basic';
 import Form from './Form';
 import Eject from './Eject';
+import table from './Table';
 Vue.use(Router);
 const BasicLayout = () => import('@/layout/BasicLayout');
 const LogIn = () => import('@/views/LogIn/LogIn');
@@ -28,7 +29,8 @@ export const constantRouterMap = [
       ...Navigations,
       ...Basic,
       ...Form,
-      ...Eject
+      ...Eject,
+      ...table
     ]
   }
 ];

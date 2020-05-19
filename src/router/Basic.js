@@ -31,6 +31,11 @@ const menuRoutes = [
         path: '/Basic/BaseDialog',
         meta: { title: 'BaseDialog 对话框' },
         component: AsyncComponent('Basic/BaseDialog/BaseDialog')
+      },
+      {
+        path: '/Basic/Spin',
+        meta: { title: 'Spin 区域Loding' },
+        component: AsyncComponent('Basic/Spin')
       }
     ]
   }

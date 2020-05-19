@@ -83,6 +83,11 @@ export default {
           path: '/Basic/BaseDialog',
           key: '/Basic/BaseDialog',
           title: 'BaseDialog 对话框'
+        },
+        {
+          path: '/Basic/Spin',
+          key: '/Basic/Spin',
+          title: 'Spin 区域Loding'
         }
       ]
     },
@@ -129,6 +134,19 @@ export default {
           path: '/Eject/Drawer',
           key: '/Eject/Drawer',
           title: '抽屉'
+        }
+      ]
+    },
+    {
+      path: '/Table',
+      key: '/Table',
+      title: '表格组件',
+      icon: 'el-icon-s-check',
+      children: [
+        {
+          path: '/Table/Table',
+          key: '/Table/Table',
+          title: 'Table 表格'
         }
       ]
     },

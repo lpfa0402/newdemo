@@ -1,36 +1,22 @@
-/**
- * 全局引用
- * 全局组件的注册
- */
-import Vue from 'vue';
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-import JsonToExcel from '@/components/JsonToExcel';
-import LazyLoadTabs from '@/components/LazyLoadTabs';
-import Anchor from '@/components/Anchor';
-import AjaxButton from '@/components/AjaxButton';
-import BaseDialog from '@/components/BaseDialog';
-import FormPanel from '@/components/FormPanel';
-import UploadCropper from '@/components/UploadCropper';
-import UploadFile from '@/components/UploadFile';
-import UploadFiles from '@/components/UploadFile';
-import BreakSpace from '@/components/BreakSpace';
-import Tinymce from '@/components/Tinymce';
-import BasePrint from '@/components/BasePrint';
-import Drawer from '@/components/Drawer';
-Vue.use(ElementUI, { size: 'small', zIndex: 1000 });
-
-// 注册全局组件
-Vue.use(JsonToExcel);
-Vue.use(LazyLoadTabs);
-Vue.use(Anchor);
-Vue.use(AjaxButton);
-Vue.use(BaseDialog);
-Vue.use(FormPanel);
-Vue.use(UploadCropper);
-Vue.use(UploadFile);
-Vue.use(UploadFiles);
-Vue.use(BreakSpace);
-Vue.use(Tinymce);
-Vue.use(BasePrint);
-Vue.use(Drawer);
+export default {
+  systemName: 'DMS系统',
+  maxCacheNum: 999, // 路由组件最大缓存数量
+  notifyDuration: 3000, // 通知消息组件显示时间
+  table: {
+    pageNum: 1,
+    pageSize: 20,
+    serverSort: false,
+    serverFilter: false
+  },
+  charts: {
+    // 图例文字
+    chartLegendSize: 14,
+    // 饼状图文字
+    chartSeriesSize: 14,
+    // 柱状图 x/y 轴的文字
+    chartXAxisSize: 14,
+    chartYAxisSize: 14,
+    // tooltip 的文字
+    chartTooltipSize: 14
+  }
+};
