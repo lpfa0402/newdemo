@@ -3,7 +3,7 @@ module.exports = {
   devServer: {
     open: true, // npm run serve后自动打开页面
     host: '0.0.0.0', // 匹配本机IP地址(默认是0.0.0.0)
-    port: 8080, // 开发服务器运行端口号,被占用的话会自动改变
+    port: 8081, // 开发服务器运行端口号,被占用的话会自动改变
     proxy: {
       '/api': {
         target: 'http://www.exaple.com', // 代理接口地址
