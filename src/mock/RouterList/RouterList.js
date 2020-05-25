@@ -147,6 +147,11 @@ export default {
           path: '/Table/Table',
           key: '/Table/Table',
           title: 'Table 表格'
+        },
+        {
+          path: '/Table/TableColumns',
+          key: '/Table/TableColumns',
+          title: 'Table 表头参数'
         }
       ]
     },
