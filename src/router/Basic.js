@@ -3,7 +3,6 @@
  */
 // 引入路由包裹器
 const RouteView = () => import('@/layout/RouteView');
-
 // 创建异步路由组件加载
 const AsyncComponent = __name__ => () => import(`@/views/${__name__}`);
 

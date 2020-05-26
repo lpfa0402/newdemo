@@ -24,6 +24,11 @@ const menuRoutes = [
         path: '/Table/TableColumns',
         meta: { title: 'Table 表头参数' },
         component: AsyncComponent('Table/TableColumns')
+      },
+      {
+        path: '/Table/TopFilter',
+        meta: { title: 'Table 搜索' },
+        component: AsyncComponent('Table/TopFilter')
       }
     ]
   }

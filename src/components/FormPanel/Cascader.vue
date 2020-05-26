@@ -70,7 +70,7 @@ export default {
       return res;
     },
     clickHandle(ev, index, obj) {
-      // const { value, text, children } = obj
+      // const { value, text, children } = obj;
       const { children } = obj;
       ev.stopPropagation();
       this.$set(this.values, index, obj);
@@ -96,20 +96,11 @@ export default {
             {dataList.map((list, index) => (
               <td key={`td-${index}`}>
                 {list.map(item => {
-                  const actived =
-                    values[index] && values[index].value === item.value
-                      ? 'selected'
-                      : '';
+                  const actived = values[index] && values[index].value === item.value ? 'selected' : '';
                   return (
-                    <li
-                      key={item.value}
-                      class={actived}
-                      onClick={ev => this.clickHandle(ev, index, item)}
-                    >
+                    <li key={item.value} class={actived} onClick={ev => this.clickHandle(ev, index, item)}>
                       {item.text}
-                      {Array.isArray(item.children) && item.children.length ? (
-                        <i class="el-icon-arrow-right"></i>
-                      ) : null}
+                      {Array.isArray(item.children) && item.children.length ? <i class="el-icon-arrow-right"></i> : null}
                     </li>
                   );
                 })}

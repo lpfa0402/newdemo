@@ -152,6 +152,11 @@ export default {
           path: '/Table/TableColumns',
           key: '/Table/TableColumns',
           title: 'Table 表头参数'
+        },
+        {
+          path: '/Table/TopFilter',
+          key: '/Table/TopFilter',
+          title: 'Table 搜索'
         }
       ]
     },
