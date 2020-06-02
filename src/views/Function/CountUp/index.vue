@@ -1,6 +1,6 @@
 <template>
   <div style="padding-bottom: 60px;">
-    <h2>JsonToExcel 文件导出</h2>
+    <h2>CountUp 数字滚动</h2>
     <div class="cod_wrapper">
       <div class="cod_top">
         <el-button @click="printHandler">打印</el-button>

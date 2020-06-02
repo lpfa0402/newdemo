@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
 .l_common_wrapper {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   bottom: 0px;

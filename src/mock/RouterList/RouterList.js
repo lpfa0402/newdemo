@@ -35,6 +35,11 @@ export default {
           path: '/Function/BasePrint',
           key: '/Function/BasePrint',
           title: '打印'
+        },
+        {
+          path: '/Function/CountUp',
+          key: '/Function/CountUp',
+          title: '数字滚动'
         }
       ]
     },
@@ -76,6 +81,11 @@ export default {
               path: '/Basic/Button/AjaxButton',
               key: '/Basic/Button/AjaxButton',
               title: 'AjaxButton'
+            },
+            {
+              path: '/Basic/Button/MultiuseButton',
+              key: '/Basic/Button/MultiuseButton',
+              title: 'MultiuseButton'
             }
           ]
         },

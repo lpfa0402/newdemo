@@ -1,11 +1,20 @@
 <template>
   <div>
-    77777777777777
+    {{ $t('test.val') }}
+    <CountUp :endVal="643" :options="options"/>
   </div>
 </template>
 <script>
 export default {
   name: 'homeA',
+  data() {
+    return {
+      options: {
+        startVal: 1,
+        decimals: 2
+      }
+    };
+  }
 };
 </script>
 

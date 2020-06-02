@@ -23,6 +23,11 @@ const menuRoutes = [
             path: '/Basic/Button/AjaxButton',
             meta: { title: 'AjaxButton' },
             component: AsyncComponent('Basic/Button/AjaxButton/AjaxButton')
+          },
+          {
+            path: '/Basic/Button/MultiuseButton',
+            meta: { title: 'MultiuseButton' },
+            component: AsyncComponent('Basic/Button/MultiuseButton')
           }
         ]
       },

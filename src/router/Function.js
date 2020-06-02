@@ -24,6 +24,11 @@ const menuRoutes = [
         path: '/Function/BasePrint',
         meta: { title: '打印' },
         component: AsyncComponent('Function/BasePrint')
+      },
+      {
+        path: '/Function/CountUp',
+        meta: { title: '数组滚动' },
+        component: AsyncComponent('Function/CountUp')
       }
     ]
   }
