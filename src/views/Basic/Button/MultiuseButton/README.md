@@ -1,23 +1,28 @@
 ```bash
 <template>
-  <!-- 将@click绑定的ajax事件换成 :click绑定 -->
-  <AjaxButton :disabled="false" :click="saveHandle" size="small" type="primary">
-    提交
-  </AjaxButton>
+  <multiuse-button size="small" @click="closeHandle">关闭</multiuse-button>
+  <multiuse-button size="small" :click="saveHandle" :auth-list="auths" auth-mark="/api/aaa">保存<multiuse-button>
+  <multiuse-button type="warning" :click="saveHandle.bind(this, 1)">保存</multiuse-button>
 </template>
 <script>
 // 引入接口
-import { reqPost } from '@/api';
+import { authority } from '@/utils/authMixin';
+import { saveApi } from '@/api/xxx/xxx';
 export default {
-  name: 'AjaxButtonTest',
+  mixins: [authority],
   data() {
-    return {};
+    return {
+      formData: {}
+    };
   },
   methods: {
-    // 异步发送Ajax请求
-    async saveHandle() {
-      await reqPost();
-    }
+    async saveHandle(type) {
+      // if (type === 1) {
+      //   业务逻辑判断
+      // }
+      const res = await saveApi(this.formData);
+    },
+    closeHandle() {}
   }
 }
 ```
