@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
   </div>
 </template>
 
 <script>
+import '@/assets/css/reset.css'
+import '@/assets/css/prism.css'
 export default {
   name: 'App'
 }
