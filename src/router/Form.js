@@ -38,7 +38,7 @@ const menuRoutes = [
       {
         path: '/Form/FormPanel',
         meta: { title: 'Form 表单' },
-        component: AsyncComponent('Form/FormPanel/FormPanel')
+        component: AsyncComponent('Form/FormPanel')
       }
     ]
   }

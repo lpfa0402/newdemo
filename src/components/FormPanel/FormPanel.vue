@@ -156,6 +156,7 @@ export default {
         // 初始值
         target[x.fieldName] = val;
       });
+
       return target;
     },
     resetFormData(list) {
@@ -178,7 +179,6 @@ export default {
         disabled,
         change = () => {}
       } = option;
-      console.log(itemList);
       const { trueValue = '1', falseValue = '0' } = options;
       return (
         <div class="label-wrap" style={{ ...style }}>

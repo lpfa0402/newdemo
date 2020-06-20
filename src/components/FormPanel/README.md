@@ -98,7 +98,7 @@ Vue.use(FormPanel);
 - hidden = "Boolean | 是否隐藏该表单项"
   - 示例：{hidden: true}
     - 默认值： false
-    - 可选值： true / false6
+    - 可选值： true / false
 
 - readonly = "Boolean | 是否只读"
   - 示例：{readonly: true}
@@ -229,12 +229,12 @@ Vue.use(FormPanel);
     - 默认值： 空
     - 可选值： Numebr
 
-- max = "Number | 最小值"
+- max = "Number | 最大值"
   - 示例：{max: 10}
     - 默认值： 空
     - 可选值： Numebr
 
-- step = "Number | 最小值"
+- step = "Number | 步长"
   - 示例：{step: 2}
     - 默认值： 空
     - 可选值： Numebr
