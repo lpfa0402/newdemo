@@ -28,6 +28,11 @@ const menuRoutes = [
             path: '/Basic/Button/MultiuseButton',
             meta: { title: 'MultiuseButton' },
             component: AsyncComponent('Basic/Button/MultiuseButton')
+          },
+          {
+            path: '/Basic/Button/ButtonArea',
+            meta: { title: 'ButtonArea' },
+            component: AsyncComponent('Basic/Button/ButtonArea')
           }
         ]
       },

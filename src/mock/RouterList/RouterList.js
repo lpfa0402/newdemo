@@ -86,6 +86,11 @@ export default {
               path: '/Basic/Button/MultiuseButton',
               key: '/Basic/Button/MultiuseButton',
               title: 'MultiuseButton'
+            },
+            {
+              path: '/Basic/Button/ButtonArea',
+              key: '/Basic/Button/ButtonArea',
+              title: 'ButtonArea'
             }
           ]
         },
@@ -122,11 +127,11 @@ export default {
           key: '/Form/BreakSpace',
           title: 'BreakSpace 分隔符'
         },
-        // {
-        //   path: '/Form/Tinymce',
-        //   key: '/Form/Tinymce',
-        //   title: 'Tinymce 富文本'
-        // },
+        {
+          path: '/Form/Tinymce',
+          key: '/Form/Tinymce',
+          title: 'Tinymce 富文本'
+        },
         {
           path: '/Form/FormPanel',
           key: '/Form/FormPanel',
