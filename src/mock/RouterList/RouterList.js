@@ -118,6 +118,11 @@ export default {
           title: 'UploadCropper 图片上传'
         },
         {
+          path: '/Form/ImportFile',
+          key: '/Form/ImportFile',
+          title: 'ImportFile 附件上传'
+        },
+        {
           path: '/Form/UploadFile',
           key: '/Form/UploadFile',
           title: 'UploadFile 文件上传'

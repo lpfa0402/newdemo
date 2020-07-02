@@ -24,6 +24,7 @@ import TopFilter from '@/components/TopFilter';
 import CountUp from '@/components/CountUp';
 import MultiuseButton from '@/components/MultiuseButton';
 import ButtonArea from '@/components/ButtonArea';
+import importFile from '@/components/importFile';
 Vue.use(ElementUI, { size: 'small', zIndex: 1000 });
 
 // 注册全局组件
@@ -46,3 +47,4 @@ Vue.use(TopFilter);
 Vue.use(CountUp);
 Vue.use(MultiuseButton);
 Vue.use(ButtonArea);
+Vue.use(importFile);

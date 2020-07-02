@@ -8,7 +8,7 @@
 </template>
 <script>
 export default {
-  name: 'BreakSpaceTest',
+  name: 'ButtonAreaTest',
   data() {
     return {};
   },

@@ -21,6 +21,11 @@ const menuRoutes = [
         component: AsyncComponent('Form/UploadCropper/UploadCropper')
       },
       {
+        path: '/Form/ImportFile',
+        meta: { title: 'importFile 附件上传' },
+        component: AsyncComponent('Form/ImportFile')
+      },
+      {
         path: '/Form/UploadFile',
         meta: { title: 'UploadFile 文件上传' },
         component: AsyncComponent('Form/UploadFile/UploadFile')
