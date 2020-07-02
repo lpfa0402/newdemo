@@ -41,6 +41,11 @@ const menuRoutes = [
         component: AsyncComponent('Form/Tinymce/Tinymce')
       },
       {
+        path: '/Form/OssUpload',
+        meta: { title: 'OssUpload 大文件分片上传' },
+        component: AsyncComponent('Form/OssUpload')
+      },
+      {
         path: '/Form/FormPanel',
         meta: { title: 'Form 表单' },
         component: AsyncComponent('Form/FormPanel')

@@ -138,6 +138,11 @@ export default {
           title: 'Tinymce 富文本'
         },
         {
+          path: '/Form/OssUpload',
+          key: '/Form/OssUpload',
+          title: 'OssUpload 大文件分片上传'
+        },
+        {
           path: '/Form/FormPanel',
           key: '/Form/FormPanel',
           title: 'Form 表单'

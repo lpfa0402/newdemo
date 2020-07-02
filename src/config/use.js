@@ -25,6 +25,7 @@ import CountUp from '@/components/CountUp';
 import MultiuseButton from '@/components/MultiuseButton';
 import ButtonArea from '@/components/ButtonArea';
 import importFile from '@/components/importFile';
+import OssUpload from '@/components/OssUpload';
 Vue.use(ElementUI, { size: 'small', zIndex: 1000 });
 
 // 注册全局组件
@@ -48,3 +49,4 @@ Vue.use(CountUp);
 Vue.use(MultiuseButton);
 Vue.use(ButtonArea);
 Vue.use(importFile);
+Vue.use(OssUpload);
