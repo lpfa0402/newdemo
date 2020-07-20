@@ -17,6 +17,12 @@ export default {
           key: '/home/HomeB',
           title: '组件二',
           icon: 'el-icon-s-check'
+        },
+        {
+          path: '/home/HomeC',
+          key: '/home/HomeC',
+          title: '组件三',
+          icon: 'el-icon-s-check'
         }
       ]
     },

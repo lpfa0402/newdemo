@@ -26,6 +26,7 @@ import MultiuseButton from '@/components/MultiuseButton';
 import ButtonArea from '@/components/ButtonArea';
 import importFile from '@/components/importFile';
 import OssUpload from '@/components/OssUpload';
+import UploadImg from '@/components/UploadImg';
 Vue.use(ElementUI, { size: 'small', zIndex: 1000 });
 
 // 注册全局组件
@@ -50,3 +51,4 @@ Vue.use(MultiuseButton);
 Vue.use(ButtonArea);
 Vue.use(importFile);
 Vue.use(OssUpload);
+Vue.use(UploadImg);

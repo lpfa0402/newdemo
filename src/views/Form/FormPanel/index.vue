@@ -1242,7 +1242,7 @@ export default {
           OptionalValues: 'true / false',
           Default: 'true'
         }
-      ]
+      ];
     },
     CreatFormListB() {
       return [
@@ -1438,7 +1438,7 @@ export default {
           explain: '输入内容正则验证',
           type: 'RegExp',
           must: 'false',
-          OptionalValues: "rules: [{ pattern: /^1[3456789]\d{9}$/, message: '失败提示', trigger: 'blur' }]",
+          OptionalValues: "rules: [{ pattern: '/^1[3456789]d{9}$/', message: '失败提示', trigger: 'blur' }]",
           Default: '——'
         }
       ];

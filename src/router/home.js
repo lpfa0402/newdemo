@@ -24,6 +24,11 @@ const menuRoutes = [
         path: '/home/HomeB',
         meta: { title: '组件二' },
         component: AsyncComponent('Home/HomeB/HomeB')
+      },
+      {
+        path: '/home/HomeC',
+        meta: { title: '组件三' },
+        component: AsyncComponent('Home/HomeC')
       }
     ]
   }
