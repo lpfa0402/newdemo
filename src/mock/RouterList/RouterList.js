@@ -21,7 +21,7 @@ export default {
         {
           path: '/home/HomeC',
           key: '/home/HomeC',
-          title: '组件三',
+          title: '多级选中联动表格',
           icon: 'el-icon-s-check'
         }
       ]

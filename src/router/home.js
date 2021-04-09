@@ -1,3 +1,9 @@
+/*
+ * @Author: Lpf
+ * @Date: 2021-03-02 16:54:40
+ * @LastEditTime: 2021-04-09 14:59:14
+ * @Description: 
+ */
 /**
  * 第一个模块的全部路由
  */
@@ -27,7 +33,7 @@ const menuRoutes = [
       },
       {
         path: '/home/HomeC',
-        meta: { title: '组件三' },
+        meta: { title: '多级选中联动表格' },
         component: AsyncComponent('Home/HomeC')
       }
     ]

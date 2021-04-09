@@ -1,3 +1,9 @@
+/*
+ * @Author: Lpf
+ * @Date: 2021-03-02 16:54:40
+ * @LastEditTime: 2021-04-09 15:05:25
+ * @Description: 
+ */
 /**
  * 全局引用
  * 全局组件的注册
@@ -27,6 +33,7 @@ import ButtonArea from '@/components/ButtonArea';
 import importFile from '@/components/importFile';
 import OssUpload from '@/components/OssUpload';
 import UploadImg from '@/components/UploadImg';
+import LinkageTable from '@/components/LinkageTable'
 Vue.use(ElementUI, { size: 'small', zIndex: 1000 });
 
 // 注册全局组件
@@ -52,3 +59,4 @@ Vue.use(ButtonArea);
 Vue.use(importFile);
 Vue.use(OssUpload);
 Vue.use(UploadImg);
+Vue.use(LinkageTable);
