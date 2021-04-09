@@ -15,7 +15,7 @@ export default {
         {
           path: '/home/HomeB',
           key: '/home/HomeB',
-          title: '组件二',
+          title: '图片压缩上传',
           icon: 'el-icon-s-check'
         },
         {

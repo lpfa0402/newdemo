@@ -2,10 +2,10 @@
 export default {
   name: 'UploadImg',
   props: {
-    actionUrl: {
-      type: String,
-      required: true
-    },
+    // actionUrl: {
+    //   type: String,
+    //   required: true
+    // },
     fileTypes: {
       type: Array,
       default: () => ['jpg', 'png']

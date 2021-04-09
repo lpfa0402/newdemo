@@ -22,7 +22,7 @@ const menuRoutes = [
       },
       {
         path: '/home/HomeB',
-        meta: { title: '组件二' },
+        meta: { title: '图片压缩上传' },
         component: AsyncComponent('Home/HomeB/HomeB')
       },
       {
